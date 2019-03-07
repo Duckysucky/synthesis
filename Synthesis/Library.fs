@@ -1,5 +1,7 @@
 ﻿module Synthesis
 
+open System.Diagnostics
+
 let abelar c =
     c > 12 && c < 3097 && c % 12 =0 
 
@@ -44,14 +46,33 @@ let digits d =
     count d 1
 
     
-let minmax _ =
+let minmax (a,b,c,d) =
     failwith "Not implemented"
 
-let isLeap _ =
-    failwith "Not implemented"
+let isLeap y =
+   match y >= 1582 with
+   |false -> failwith "Invalid year"
+   |true -> match y % 4 = 0, y % 100 = 0, y % 400 = 0  with 
+   |true,true,true | true, false, false -> true
+   |_ -> false
 
-let month _ =
-    failwith "Not implemented"
+
+let month m = 
+    match m with 
+    |1-> "January",31
+    |2 ->"February", 28
+    |3 -> "March", 31
+    |4 ->"April", 30
+    |5 ->"May", 31
+    |6 ->"June", 30
+    |7 ->"July", 31
+    |8 ->"August", 31
+    |9 ->"September", 30
+    |10 ->"October", 31
+    |11 ->"November", 30
+    |12 ->"December", 31
+    |_ -> failwith "Invalid Function"
+
 
 let toBinary _ =
     failwith "Not implemented"
