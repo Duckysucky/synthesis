@@ -57,8 +57,7 @@ let isLeap y =
    |_ -> false
 
 
-let month m = 
-    match m with 
+let month  = function
     |1-> "January",31
     |2 ->"February", 28
     |3 -> "March", 31
@@ -74,8 +73,14 @@ let month m =
     |_ -> failwith "Invalid Function"
 
 
-let toBinary _ =
-    failwith "Not implemented"
+let toBinary n =
+    match n > 0 with
+    |false -> failwith "Invalid value"
+    |true -> 
+    let rec bin a = match a >=1 with
+    |false -> a + 
+
+    
 
 let bizFuzz _ =
     failwith "Not implemented"
