@@ -74,19 +74,117 @@ let month  = function
 
 
 let toBinary n =
-    match n > 0 with
+    failwith "blah"
+    (*match n > 0 with
     |false -> failwith "Invalid value"
     |true -> 
-    let rec bin a = match a >=1 with
-    |false -> a + 
-
+    let rec bin a b= match a >=1 with
+    |false -> bin (a/2) ((sprintf a%2 i) + b)
+    |true -> sprintf a + b 
+    bin n ""
+    *)
     
 
-let bizFuzz _ =
-    failwith "Not implemented"
-
-let monthDay _ _ =
-    failwith "Not implemented"
+let bizFuzz f =
+    let rec factors n thr fiv taf =
+     match f <=1 with
+     |false ->
+       match n >= f with 
+       |true ->
+         match n % 3 = 0 with 
+         |false -> 
+           match n % 5 = 0 with
+           |false -> factors (n + 1) thr fiv taf
+           |true -> factors (n + 1) thr (fiv+1) taf
+         |true ->
+           match n % 5 = 0 with
+           |true -> factors (n + 1) thr fiv (taf+1)
+           |false ->factors (n+1) (thr+1) fiv taf
+       |false -> thr,fiv,taf
+     |true -> 0,0,0
+    factors f 0 0  0
+    
+let monthDay d y =
+   match d=0 with
+   |true -> failwith "Invalid day"
+   |false ->
+     match isLeap y with
+     |false -> 
+       match d = 366 with
+       |true -> failwith "Invalid day, not leap" 
+       |false -> 
+          match d <= 31 with
+          |true ->"January"
+          |false -> 
+            match d <=59 with
+            |true -> "February"
+            |false -> 
+             match d <= 90 with
+             |true ->"March"
+             |false -> 
+               match d<=120 with
+               |true -> "April"
+               |false ->
+                 match d<=151 with
+                 |true ->"May"
+                 |false ->
+                  match d<=181 with
+                  |true->"June"
+                  |false ->
+                   match d<=212 with
+                   |true ->"July"
+                   |false ->
+                    match d<= 243 with
+                    |true -> "August"
+                    |false ->
+                     match d <= 273 with
+                     |true -> "September"
+                     |false ->
+                      match d<= 304 with
+                      |true -> "October"
+                      |false ->
+                       match d <= 334 with
+                       |true -> "November"
+                       |false -> 
+                        match d<= 365 with 
+                        |true -> "December"
+                        |false -> failwith "invalid number"
+     |true -> match d <= 31 with
+          |true ->"January"
+          |false -> 
+            match d <=60 with
+            |true -> "February"
+            |false -> 
+             match d <= 91 with
+             |true ->"March"
+             |false -> 
+               match d<=121 with
+               |true -> "April"
+               |false ->
+                 match d<=152 with
+                 |true ->"May"
+                 |false ->
+                  match d<=182 with
+                  |true->"June"
+                  |false ->
+                   match d<=213 with
+                   |true ->"July"
+                   |false ->
+                    match d<= 244 with
+                    |true -> "August"
+                    |false ->
+                     match d <= 274 with
+                     |true -> "September"
+                     |false ->
+                      match d<= 305 with
+                      |true -> "October"
+                      |false ->
+                       match d <= 335 with
+                       |true -> "November"
+                       |false -> 
+                        match d<= 366 with 
+                        |true -> "December"
+                        |false -> failwith "invalid number"
 
 let coord _ =
     failwith "Not implemented"
