@@ -47,8 +47,11 @@ let digits d =
 
     
 let minmax (a,b,c,d) =
-    failwith "Not implemented"
-
+    match min a b < min c d, max a b > max c d with
+    |true, false -> min a b, max c d
+    |false, true -> min c d, max a b
+    |true, true -> min a b, max a b
+    |false, false -> min c d, max c d
 let isLeap y =
    match y >= 1582 with
    |false -> failwith "Invalid year"
@@ -74,7 +77,7 @@ let month  = function
 
 
 let toBinary n =
-    failwith "blah"
+    failwith "Not implemented"
     (*match n > 0 with
     |false -> failwith "Invalid value"
     |true -> 
@@ -102,9 +105,9 @@ let bizFuzz f =
            |false ->factors (n+1) (thr+1) fiv taf
        |false -> thr,fiv,taf
      |true -> 0,0,0
-    factors f 0 0  0
+    factors 0 0 0  0
     
-let monthDay d y =
+let monthDay d y = //I am so sorry
    match d=0 with
    |true -> failwith "Invalid day"
    |false ->
