@@ -117,7 +117,7 @@ let monthDay d y =
    |true -> failwith "Invalid day"
    |false -> 
       let rec id a acc =
-       match a >= d with
+       match a >= d || a >=365 with
        |true -> 
         let h,p = month acc
         h
